@@ -1,0 +1,17 @@
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\hlarm.exe
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\hlarm.deps.json
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\hlarm.runtimeconfig.json
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\hlarm.dll
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\hlarm.pdb
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.AssemblyInfoInputs.cache
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.AssemblyInfo.cs
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.csproj.CoreCompileInputs.cache
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.dll
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\refint\hlarm.dll
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.pdb
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.genruntimeconfig.cache
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\ref\hlarm.dll
+C:\Users\Raymond\source\repos\hlarm\hlarm\bin\Debug\net8.0\Antlr4.Runtime.Standard.dll
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.csproj.AssemblyReference.cache
+C:\Users\Raymond\source\repos\hlarm\hlarm\obj\Debug\net8.0\hlarm.csproj.Up2Date

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WbcxT7jUfwc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\hlarm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Raymond\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
+  ],
+  "logs": []
+}
