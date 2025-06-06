@@ -108,6 +108,18 @@ public partial class aslBaseListener : IaslListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariableDeclaration([NotNull] aslParser.VariableDeclarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.referenceTag"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReferenceTag([NotNull] aslParser.ReferenceTagContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.referenceTag"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReferenceTag([NotNull] aslParser.ReferenceTagContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -119,6 +131,18 @@ public partial class aslBaseListener : IaslListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLine([NotNull] aslParser.LineContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.linedExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLinedExpression([NotNull] aslParser.LinedExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.linedExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLinedExpression([NotNull] aslParser.LinedExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.assertStatement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -348,6 +372,18 @@ public partial class aslBaseListener : IaslListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExplicitFunctionDeclaration([NotNull] aslParser.ExplicitFunctionDeclarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.singleVariableFunction"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSingleVariableFunction([NotNull] aslParser.SingleVariableFunctionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.singleVariableFunction"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSingleVariableFunction([NotNull] aslParser.SingleVariableFunctionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.setExplicitFunctionDeclaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -359,6 +395,42 @@ public partial class aslBaseListener : IaslListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSetExplicitFunctionDeclaration([NotNull] aslParser.SetExplicitFunctionDeclarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.instructionDeclaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInstructionDeclaration([NotNull] aslParser.InstructionDeclarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.instructionDeclaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInstructionDeclaration([NotNull] aslParser.InstructionDeclarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.operandData"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOperandData([NotNull] aslParser.OperandDataContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.operandData"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOperandData([NotNull] aslParser.OperandDataContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.instructionHelperData"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInstructionHelperData([NotNull] aslParser.InstructionHelperDataContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.instructionHelperData"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInstructionHelperData([NotNull] aslParser.InstructionHelperDataContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.normalExplicitFunctionDeclaration"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -504,6 +576,18 @@ public partial class aslBaseListener : IaslListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBaseExpression([NotNull] aslParser.BaseExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.identifierPath"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentifierPath([NotNull] aslParser.IdentifierPathContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.identifierPath"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentifierPath([NotNull] aslParser.IdentifierPathContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.numberRange"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -527,6 +611,18 @@ public partial class aslBaseListener : IaslListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFunctionScriptingSecond([NotNull] aslParser.FunctionScriptingSecondContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFunctionScriptingSecond([NotNull] aslParser.FunctionScriptingSecondContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.unaryOperations"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -851,6 +947,30 @@ public partial class aslBaseListener : IaslListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstant([NotNull] aslParser.ConstantContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.binaryEncodingPattern"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBinaryEncodingPattern([NotNull] aslParser.BinaryEncodingPatternContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.binaryEncodingPattern"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBinaryEncodingPattern([NotNull] aslParser.BinaryEncodingPatternContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.trueFalse"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTrueFalse([NotNull] aslParser.TrueFalseContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.trueFalse"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTrueFalse([NotNull] aslParser.TrueFalseContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

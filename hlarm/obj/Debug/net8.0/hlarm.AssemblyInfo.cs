@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("hlarm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ded4b6c85375f44b2699ba3750cd8965814305ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("hlarm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("hlarm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

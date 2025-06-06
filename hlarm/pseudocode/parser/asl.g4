@@ -27,7 +27,11 @@ lValueSet
     ;
 
 variableDeclaration
-    : type '&'? identifier (',' identifier)* ('=' expression)?
+    : type referenceTag? identifier (',' identifier)* ('=' expression)?
+    ;
+
+referenceTag
+    : '&'
     ;
 
 line
@@ -41,9 +45,13 @@ line
         hardStatements
         ) ';'
     | controlFlowStatements
-    | explicitFunctionDeclaration
     | typeDeclaration
-    | expression ';'?
+    | linedExpression
+    | explicitFunctionDeclaration
+    ;
+
+linedExpression
+    : expression ';'?
     ;
 
 assertStatement
@@ -131,14 +139,33 @@ whileStatement
 explicitFunctionDeclaration
     : normalExplicitFunctionDeclaration
     | setExplicitFunctionDeclaration
+    | singleVariableFunction
+    | instructionDeclaration
+    ;
+
+singleVariableFunction
+    : type identifier
     ;
 
 setExplicitFunctionDeclaration
     : functionScriptOperations '=' variableDeclaration ';'?
     ;
 
+//SPECIAL 
+instructionDeclaration
+    : 'instruction' '(' constant constant '(' operandData (',' operandData)* ')' ( '(' instructionHelperData (',' instructionHelperData)* ')' )? ')'
+    ;
+
+operandData
+    : identifier constant constant
+    ;
+
+instructionHelperData
+    : 'NOT' constant constant constant
+    ;
+
 normalExplicitFunctionDeclaration
-    : type functionScriptOperations ';'?
+    : type identifierPath functionArguments ';'?
     ;
 
 arrayDeclaration
@@ -183,7 +210,7 @@ bitFeild
     ;
 
 structAccessor
-    : '.' '<' identifier (',' identifier)* '>'
+    : '.' '<' identifierPath (',' identifierPath)* '>'
     ;
 
 partAccessor
@@ -193,10 +220,16 @@ partAccessor
 
 baseExpression
     : constant
-    | identifier
+    | trueFalse
+    | binaryEncodingPattern
+    | identifierPath
     | parentheses
     | tuple
     | edgeCases
+    ;
+    
+identifierPath
+    : identifier ('.' identifier)*
     ;
 
 numberRange
@@ -205,11 +238,18 @@ numberRange
     ;
 
 functionScriptOperations
-    : baseExpression (functionArguments | ('.' functionScriptOperations) | ('IN' collection) | partAccessor)*
+    : baseExpression functionScriptingSecond*
+    ;
+
+functionScriptingSecond
+    : functionArguments
+    | partAccessor
+    | '.' functionScriptOperations
+    | 'IN' collection
     ;
 
 unaryOperations
-    : ('!' | '-' | '&' | 'NOT')* functionScriptOperations
+    : ('!' | '-' | '&' | 'NOT')? functionScriptOperations
     ;
 
 exponentialOperations
@@ -305,7 +345,6 @@ IDENTIFIER
 type
     : concreteTypes
     | dynamicTypes
-    | identifier
     | constantType
     | tupleType
     ;
@@ -323,6 +362,7 @@ concreteTypes
     | 'integer'
     | 'bit'
     | 'real'
+    | identifier
     ;
 
 dynamicTypes
@@ -334,8 +374,14 @@ constant
     : DECIMAL_NUMBER
     | HEX_NUMBER
     | BINARY_NUMBER
-    | TRUE_FALSE
-    | BITS
+    ;
+
+binaryEncodingPattern
+    : BITS
+    ;
+
+STRING
+    :  '"' ( ~[\\"] )* '"'
     ;
 
 DECIMAL_NUMBER
@@ -343,20 +389,16 @@ DECIMAL_NUMBER
     ;
 
 HEX_NUMBER
-    : '0x' [0-9a-fA-F_]+
+    : ('0x' | '0X') [0-9a-fA-F_]+
     ;
 
 BINARY_NUMBER
-    : '0b' [0-1]+
+    : ('0b' | '0B') [0-1]+
     ;
 
-TRUE_FALSE
+trueFalse
     : 'TRUE'
     | 'FALSE'
-    ;
-
-STRING
-    :  '"' ( ~[\\"] )* '"'
     ;
 
 BITS

@@ -62,45 +62,13 @@ namespace hlarm.xml
             return document.OuterXml;
         }
 
-        static string clean_text(string source)
-        {
-            StringBuilder working_result = new StringBuilder();
-
-            int tower = 0;
-
-            for (int i = 0; i < source.Length; ++i)
-            {
-                char working_char = source[i];
-
-                if (working_char == '<')
-                {
-                    tower++;
-                }
-                else if (working_char == '>')
-                {
-                    tower--;
-                } 
-                else if (tower == 0)
-                {
-                    working_result.Append(working_char);
-                }
-            }
-
-            working_result.Replace("&quot;" , "\"");
-            working_result.Replace("&apos;" , "\'");
-            working_result.Replace("&lt;"   , "<");
-            working_result.Replace("&gt;"   , ">");
-            working_result.Replace("&amp;"  , "&");
-
-            return working_result.ToString();   
-        }
-
-
         static void fix_xml_psudocode(XmlNode working_element)
         {
             if (working_element.Name == "pstext")
             {
                 string working_text = working_element.InnerText;
+
+                working_text = working_text.Replace("\t", "    ");
 
                 working_element.RemoveAll();
                 working_element.InnerText = working_text;   

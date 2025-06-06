@@ -91,6 +91,16 @@ public interface IaslListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVariableDeclaration([NotNull] aslParser.VariableDeclarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.referenceTag"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReferenceTag([NotNull] aslParser.ReferenceTagContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.referenceTag"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReferenceTag([NotNull] aslParser.ReferenceTagContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -100,6 +110,16 @@ public interface IaslListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitLine([NotNull] aslParser.LineContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.linedExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLinedExpression([NotNull] aslParser.LinedExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.linedExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLinedExpression([NotNull] aslParser.LinedExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.assertStatement"/>.
 	/// </summary>
@@ -291,6 +311,16 @@ public interface IaslListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExplicitFunctionDeclaration([NotNull] aslParser.ExplicitFunctionDeclarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.singleVariableFunction"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSingleVariableFunction([NotNull] aslParser.SingleVariableFunctionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.singleVariableFunction"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSingleVariableFunction([NotNull] aslParser.SingleVariableFunctionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.setExplicitFunctionDeclaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -300,6 +330,36 @@ public interface IaslListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitSetExplicitFunctionDeclaration([NotNull] aslParser.SetExplicitFunctionDeclarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.instructionDeclaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterInstructionDeclaration([NotNull] aslParser.InstructionDeclarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.instructionDeclaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitInstructionDeclaration([NotNull] aslParser.InstructionDeclarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.operandData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOperandData([NotNull] aslParser.OperandDataContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.operandData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOperandData([NotNull] aslParser.OperandDataContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.instructionHelperData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterInstructionHelperData([NotNull] aslParser.InstructionHelperDataContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.instructionHelperData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitInstructionHelperData([NotNull] aslParser.InstructionHelperDataContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.normalExplicitFunctionDeclaration"/>.
 	/// </summary>
@@ -421,6 +481,16 @@ public interface IaslListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBaseExpression([NotNull] aslParser.BaseExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.identifierPath"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifierPath([NotNull] aslParser.IdentifierPathContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.identifierPath"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifierPath([NotNull] aslParser.IdentifierPathContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.numberRange"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -440,6 +510,16 @@ public interface IaslListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFunctionScriptingSecond([NotNull] aslParser.FunctionScriptingSecondContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFunctionScriptingSecond([NotNull] aslParser.FunctionScriptingSecondContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.unaryOperations"/>.
 	/// </summary>
@@ -710,4 +790,24 @@ public interface IaslListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] aslParser.ConstantContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.binaryEncodingPattern"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBinaryEncodingPattern([NotNull] aslParser.BinaryEncodingPatternContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.binaryEncodingPattern"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBinaryEncodingPattern([NotNull] aslParser.BinaryEncodingPatternContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.trueFalse"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTrueFalse([NotNull] aslParser.TrueFalseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.trueFalse"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTrueFalse([NotNull] aslParser.TrueFalseContext context);
 }

@@ -68,11 +68,23 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVariableDeclaration([NotNull] aslParser.VariableDeclarationContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.referenceTag"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReferenceTag([NotNull] aslParser.ReferenceTagContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLine([NotNull] aslParser.LineContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.linedExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLinedExpression([NotNull] aslParser.LinedExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.assertStatement"/>.
 	/// </summary>
@@ -188,11 +200,35 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExplicitFunctionDeclaration([NotNull] aslParser.ExplicitFunctionDeclarationContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.singleVariableFunction"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSingleVariableFunction([NotNull] aslParser.SingleVariableFunctionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.setExplicitFunctionDeclaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSetExplicitFunctionDeclaration([NotNull] aslParser.SetExplicitFunctionDeclarationContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.instructionDeclaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInstructionDeclaration([NotNull] aslParser.InstructionDeclarationContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.operandData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOperandData([NotNull] aslParser.OperandDataContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.instructionHelperData"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInstructionHelperData([NotNull] aslParser.InstructionHelperDataContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.normalExplicitFunctionDeclaration"/>.
 	/// </summary>
@@ -266,6 +302,12 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBaseExpression([NotNull] aslParser.BaseExpressionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.identifierPath"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIdentifierPath([NotNull] aslParser.IdentifierPathContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.numberRange"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -277,6 +319,12 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunctionScriptingSecond([NotNull] aslParser.FunctionScriptingSecondContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.unaryOperations"/>.
 	/// </summary>
@@ -439,4 +487,16 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] aslParser.ConstantContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.binaryEncodingPattern"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinaryEncodingPattern([NotNull] aslParser.BinaryEncodingPatternContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.trueFalse"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTrueFalse([NotNull] aslParser.TrueFalseContext context);
 }

@@ -63,5 +63,32 @@ namespace hlarm.specification
 
             source_loader.get_parse_tree(pseudocode);
         }
+
+        public string create_dump()
+        {
+            StringBuilder result = new StringBuilder(); 
+
+            switch (type)
+            {
+                case instruction_section_type.pseudocode:
+                    {
+                        result.Append(pseudocode);
+                    }
+                    ; break;
+
+                case instruction_section_type.instruction:
+                    {
+                        foreach (instruction_encoding e in encodings)
+                        {
+                            result.Append(e.create_dump(this) + "\n");
+                        }
+                    }
+                    ; break;
+
+                default: return "";
+            }
+
+            return result.ToString();
+        }
     }
 }

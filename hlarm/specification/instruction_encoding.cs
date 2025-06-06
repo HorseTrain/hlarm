@@ -36,6 +36,7 @@ namespace hlarm.specification
 
                     working_instruction_operand.name = b.Name;
                     working_instruction_operand.offset = 32 - encoding_string.Length;
+                    working_instruction_operand.length = b.C.Count;
 
                     operands.Add(b.Name, working_instruction_operand);
                 }
@@ -134,6 +135,57 @@ namespace hlarm.specification
             {
                 decoding_pseudocode = i_class.PsSection.Ps.Pstext.Text[0];
             }
+        }
+
+        public string create_dump(instruction_section section)
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append($"//{section.title} | {name}\n");
+            result.Append($"instruction (0x{decoding_instruction:x} 0x{decoding_mask:x} (");
+
+            foreach (var o in operands)
+            {
+                result.Append($"{o.Key} {o.Value.offset} {o.Value.length}");
+
+                if (o.Key != operands.Keys.Last())
+                    result.Append(", ");
+            }
+
+            result.Append(")");
+
+            if (helpers.Count != 0)
+            {
+                result.Append(" (");
+
+                foreach (var h in helpers)
+                {
+                    switch (h.type)
+                    {
+                        case encoding_helper_type.does_not_equal:
+                            {
+                                result.Append($"NOT {h.encoding_offset} {h.length} 0b{h.value}");
+
+                            }; break;
+
+                        default: throw new Exception();
+                    }
+
+                    if (h != helpers.Last())
+                    {
+                        result.Append(", ");
+                    }
+                }
+
+                result.Append(")");
+            }
+
+            result.Append(")\n");
+
+            result.Append(string_tools.tab_string(decoding_pseudocode));
+            result.Append(string_tools.tab_string(section.pseudocode));
+
+            return result.ToString();   
         }
     }
 }

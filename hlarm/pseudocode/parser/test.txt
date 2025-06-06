@@ -1,7 +1,18 @@
-if !IsFeatureImplemented(FEAT_CSSC) then EndOfDecode(Decode_UNDEF);
-constant integer datasize = 32 << UInt(sf);
-constant integer d = UInt(Rd);
-constant integer n = UInt(Rn);
-constant bits(datasize) operand1 = X[n, datasize];
-constant integer result = Abs(SInt(operand1));
-X[d, datasize] = result<datasize-1:0>;
+//ADD (immediate) -- A64 | Not setting the condition flags
+instruction (0x11000000 0x7f800000 (sf 31 1, op 31 0, S 30 0, sh 22 1, imm12 10 12, Rn 5 5, Rd 0 5))
+	constant integer d = UInt(Rd);
+	constant integer n = UInt(Rn);
+	constant integer datasize = 32 << UInt(sf);
+	
+	constant bits(24) imm = if sh == '0' then Zeros(12):imm12 else imm12:Zeros(12);
+	constant bits(datasize) operand1 = if n == 31 then SP[datasize] else X[n, datasize];
+	constant bits(datasize) operand2 = ZeroExtend(imm, datasize);
+	bits(datasize) result;
+	(result, -) = AddWithCarry(operand1, operand2, '0');
+	
+	if d == 31 then
+	    SP[64] = ZeroExtend(result, 64);
+	else
+	    X[d, datasize] = result;
+	
+
