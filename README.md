@@ -1,5 +1,6 @@
 # hlarm
-A parser for ARM XML and Specification Data 
+
+HLARM is a tool to parse and execute the Arm Specification Language (ASL)
 
 GOALS 🛠️
   - Arm Specification Language Parser and Executer [ ] 👈 Main Goal
