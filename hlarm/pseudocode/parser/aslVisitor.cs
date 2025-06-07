@@ -320,6 +320,18 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.functionSubscriptStructAccessor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunctionSubscriptStructAccessor([NotNull] aslParser.FunctionSubscriptStructAccessorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.inCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInCollection([NotNull] aslParser.InCollectionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -439,6 +451,12 @@ public interface IaslVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTuple([NotNull] aslParser.TupleContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="aslParser.bracketCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBracketCollection([NotNull] aslParser.BracketCollectionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="aslParser.collection"/>.
 	/// </summary>

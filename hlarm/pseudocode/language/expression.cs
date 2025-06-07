@@ -10,7 +10,7 @@ namespace hlarm.pseudocode.language
     {
         public virtual expression_type get_expression_type()
         {
-            throw new Exception(this.GetType().ToString());
+            return new dynamic_type();
         }
     }
 }

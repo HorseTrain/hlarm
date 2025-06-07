@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "debug_arm_interpreter/1.0.0": {
+        "runtime": {
+          "debug_arm_interpreter.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "debug_arm_interpreter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace hlarm.pseudocode.language
 {
@@ -87,9 +88,78 @@ namespace hlarm.pseudocode.language
                 case pre_language_type.parentheses: return visit_parentheses(source);
                 case pre_language_type.tuple_type: return visit_expression_type(source);
                 case pre_language_type.dynamic_type: return visit_expression_type(source);
+                case pre_language_type.concrete_type: return visit_expression_type(source); 
                 case pre_language_type.return_statement: return visit_return_statement(source);
+                case pre_language_type.assert_statement: return visit_assert(source);
+                case pre_language_type.while_loop: return visit_while_loop(source);
+                case pre_language_type.for_loop: return visit_for_loop(source);
+                case pre_language_type.in_collection: return visit_in_collection(source);
+                case pre_language_type.case_statement: return visit_case_statement(source);
+                case pre_language_type.when_statement: return visit_when_statement(source);
+                case pre_language_type.real_constant: return visit_constant_real(source);
                 default: throw new Exception();
             }
+        }
+
+        constant_real visit_constant_real(pre_language_object source)
+        {
+            return new constant_real((double)source.data);
+        }
+
+        when_statement visit_when_statement(pre_language_object source)
+        {
+            when_statement result = new when_statement();
+
+            List<object> data = (List<object>)source.data;
+
+            foreach (object o in (List<object>)data[0])
+            {
+                result.passes.Add((expression)visit(o));
+            }
+
+            result.code = convert_to_scope(visit(data[1]));
+
+            return result;
+        }
+
+        case_statement visit_case_statement(pre_language_object source)
+        {
+            case_statement result = new case_statement();
+
+            List<object> data = (List<object>)source.data;
+
+            result.test = (expression)visit(data[0]);
+
+            pre_language_object case_data = (pre_language_object)data[1];
+
+            debug_tools.assert(case_data.type == pre_language_type.scope);
+
+            pre_language_scope scope_data = (pre_language_scope)case_data.data;
+
+            foreach (object o in scope_data.code)
+            {
+                result.statements.Add((when_statement)visit(o));
+            }
+
+            return result;
+        }
+
+        in_collection visit_in_collection(pre_language_object source)
+        {
+            List<object> data = (List<object>) source.data;
+
+            in_collection result = new in_collection();
+
+            result.test = (expression)visit(data[0]);
+
+            List<pre_language_object> source_list = (List<pre_language_object>)((pre_language_object)data[1]).data;
+
+            foreach (pre_language_object o in source_list)
+            {
+                result.values.Add((expression)visit(o));
+            }
+
+            return result;
         }
 
         scope visit_scope(pre_language_object source)
@@ -97,6 +167,53 @@ namespace hlarm.pseudocode.language
             scope result = new scope(this);
 
             result.evaluate_commands(source);   
+
+            return result;
+        }
+
+        for_loop visit_for_loop(pre_language_object source)
+        {
+            List<object> data = (List<object>)source.data;
+
+            for_loop result = new for_loop(this);
+
+            result.start = result.visit(data[0]);
+            result.end = (expression)result.visit(data[1]);
+            result.goes_up = (string)data[2] == "to";
+
+            if (result.goes_up)
+            {
+                result.end = new binary_operation(result.end, "+", new constant(1));
+            }
+            else
+            {
+                result.end = new binary_operation(result.end, "-", new constant(1));
+            }
+
+            result.start_reference = new declaration_reference() { reference = result.start };
+
+            result.evaluate_commands((pre_language_object)data[3]);
+
+            return result;
+        }
+
+        while_loop visit_while_loop(pre_language_object source)
+        {
+            List<object> data = (List<object>)source.data;
+
+            while_loop result = new while_loop();
+
+            result.condition = (expression)visit(data[0]);
+            result.code = convert_to_scope(visit(data[1]));
+
+            return result;
+        }
+
+        assert_statement visit_assert(pre_language_object source)
+        {
+            assert_statement result = new assert_statement();
+
+            result.value = (expression)visit(source.data);
 
             return result;
         }
@@ -218,7 +335,7 @@ namespace hlarm.pseudocode.language
                 }
                 else if (fail_statement.type == pre_language_type.else_if_statement)
                 {
-                    throw new Exception();
+                    result.fails = visit_if_statement(fail_statement);
                 }
             }
 
@@ -255,14 +372,17 @@ namespace hlarm.pseudocode.language
                 return visit_function_call(data[0], right); 
             }
 
-            expression left = (expression)visit(data[0]);
-
-            if (left is declaration_reference dr && dr.reference == null)
+            if (data[0].type == pre_language_type.identifier_collection)
             {
-                string name = data[0].raw_node.GetText();
+                string identifier = name_from_collection(data[0]);
 
-                return create_variable_declaration(name, right.get_expression_type(), right);
+                if (get_scoped_object(identifier) == null)
+                {
+                    return create_variable_declaration(identifier, right.get_expression_type(), right);
+                }
             }
+
+            expression left = (expression)visit(data[0]);
 
             return new l_value_set(left, right);
         }
@@ -400,13 +520,14 @@ namespace hlarm.pseudocode.language
             return result;
         }
 
-        public variable_declaration create_variable_declaration(string name, expression_type type, expression default_value)
+        public variable_declaration create_variable_declaration(string name, expression_type type, expression default_value, bool is_referable = false)
         {
             variable_declaration result = new variable_declaration();
 
             result.name = name;
             result.variable_type = type;
-            result.default_value = default_value;   
+            result.default_value = default_value;
+            result.is_referable = is_referable;
 
             insert_scoped_object(result.name, result);
 
@@ -431,7 +552,7 @@ namespace hlarm.pseudocode.language
                 default_value = visit(data.default_value) as expression;
             }
 
-            return create_variable_declaration(name, variable_type, default_value); 
+            return create_variable_declaration(name, variable_type, default_value, data.is_referable); 
         }
 
         expression_type visit_expression_type(pre_language_object source)

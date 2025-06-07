@@ -13,7 +13,7 @@ namespace hlarm.pseudocode.language
 
         public override expression_type get_expression_type()
         {
-            throw new Exception();
+            return new dynamic_type();
         }
     }
 }

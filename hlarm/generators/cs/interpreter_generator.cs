@@ -10,224 +10,57 @@ namespace hlarm.generators.cs
 {
     public class interpreter_generator
     {
-        hlarm_context   context     { get; set; }
+        hlarm_context context { get; set; }
 
         const string base_string = @"using System.Numerics;
+using System.Diagnostics;
 
 namespace debug_arm_interpreter
 {
-    public class arm_integer
+    public class interpreter
     {
-        public BigInteger   value   { get; set; }
-        public int          size    { get; set; }
-
-        public BigInteger get_mask()
+%DECODING%
+%IMPLEMENTATION%
+        public void execute_instruction(int instruction)
         {
-            if (size == -1)
+            for (int i = 0; i < decoding_tables.Count; ++i)
             {
-                throw new Exception(); 
-            }
+                decoding_table test_table = decoding_tables[i];
 
-            return ((BigInteger)1 << size) - 1;
-        }
-
-        public BigInteger get_masked_value()
-        {
-            return value & get_mask();  
-        }
-
-        public arm_integer(BigInteger value, int size = -1)
-        {
-            this.value = value;
-            this.size = size;
-        }
-
-        public static implicit operator arm_integer(arm_bit_field source)
-        {
-            return new arm_integer(source.value, source.size);  
-        }
-
-        public static arm_integer operator == (arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value == (int)second.value ? 1 : 0);
-        }
-
-        public static arm_integer operator !=(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value == (int)second.value ? 0 : 1);
-        }
-
-        public static implicit operator arm_integer(BigInteger source)
-        {
-            return new arm_integer(source);
-        }
-
-        public static arm_integer operator << (arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value << (int)second.value);
-        } 
-
-        public static arm_integer operator >>(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value << (int)second.value);
-        }
-
-        public static arm_integer operator +(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value + (int)second.value);
-        }
-
-        public static arm_integer operator -(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value + (int)second.value);
-        }
-
-        public static arm_integer operator *(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value * (int)second.value);
-        }
-
-        public static arm_integer operator /(arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value / (int)second.value);
-        }
-
-        public static arm_integer operator & (arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value & (int)second.value);
-        }
-
-        public static arm_integer operator | (arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value | (int)second.value);
-        }
-
-        public static arm_integer operator ^ (arm_integer first, arm_integer second)
-        {
-            return new arm_integer(first.value ^ (int)second.value);
-        }
-
-        public static arm_integer test_and(arm_integer first, arm_integer second)
-        {
-            BigInteger _f = first.value != 0 ? 1 : 0;
-            BigInteger _s = second.value != 0 ? 1 : 0;
-
-            return new arm_integer(_f & _s);
-        }
-        public static arm_integer test_or(arm_integer first, arm_integer second)
-        {
-            BigInteger _f = first.value != 0 ? 1 : 0;
-            BigInteger _s = second.value != 0 ? 1 : 0;
-
-            return new arm_integer(_f | _s);
-        }
-
-        public static arm_integer concat(arm_integer first, arm_integer second)
-        {
-            if (first.size == -1 || second.size == -1)
-            {
-                throw new Exception();
-            }
-
-            BigInteger first_n = first.get_masked_value();
-            BigInteger second_n = second.get_masked_value();
-
-            BigInteger result = (first_n << second.size) | second_n;
-
-            return new arm_integer(result, first.size + second.size);
-        }
-
-        public arm_integer bits(int top, int bottom)
-        {
-            top++;
-
-            int size = top - bottom;
-
-            BigInteger mask = ((BigInteger)1 << size) - 1;
-
-            return new arm_integer((value >> bottom) & mask, size);
-        }
-
-        public arm_integer bits(params arm_integer[] parts)
-        {
-            if (parts.Count() % 2 != 0)
-            {
-                throw new Exception();
-            }
-
-            arm_integer result = new arm_integer(0, 0);
-
-            for (int i = 0; i < parts.Length; i += 2)
-            {
-                result = concat(result, bits((int)parts[i].value, (int)parts[i + 1].value));
-            }
-
-            return result;
-        }
-
-        public static arm_integer get_size(params arm_integer[] values)
-        {
-            int working_size = values[0].size;
-
-            for (int i = 1; i < values.Length; ++i)
-            {
-                if (values[i].size != working_size)
+                if (test_table.test(instruction))
                 {
-                    throw new Exception();
+                    test_table.decode_and_execute_context(this, instruction);
+
+                    return;
                 }
             }
 
-            return new arm_integer(working_size);
+            throw new Exception();
         }
 
-        public static void set_bits(ref arm_integer source, arm_integer[] parts, arm_integer new_value)
+        public void execute_instruction_big(int instruction)
         {
+            int result = 0;
 
+            for (int i = 0; i < 4; ++i)
+            {
+                int part = (instruction >> (i * 8)) & 255;
+
+                result |= (part << ((3 - i) * 8));
+            }
+
+            execute_instruction(result);
         }
-    }
 
-    public class arm_bit_field
-    {
-        public BigInteger   mask    { get; set; }
-        public BigInteger   value   { get; set; }
-        public int          size    { get; set; }  
-
-        public arm_bit_field(BigInteger mask, BigInteger value, int size)
+        public void execute_instruction_big(uint instruction)
         {
-            this.mask = mask;
-            this.value = value;
-            this.size = size;
+            execute_instruction_big((int)instruction);
         }
-
-        public static arm_integer operator == (arm_integer first,  arm_bit_field second)
-        {
-           return new arm_integer((first.value & second.mask) == second.value ? 1 : 0);  
-        }
-
-        public static arm_integer operator !=(arm_integer first, arm_bit_field second)
-        {
-            return new arm_integer((first.value & second.mask) == second.value ? 0 : 1);
-        }
-
-        public static arm_integer operator ==(arm_bit_field second, arm_integer first)
-        {
-            return new arm_integer((first.value & second.mask) == second.value ? 1 : 0);
-        }
-
-        public static arm_integer operator !=(arm_bit_field second, arm_integer first)
-        {
-            return new arm_integer((first.value & second.mask) == second.value ? 0 : 1);
-        }
-    }
-
-    public class interpreter
-    {
-%IMPLEMENTATION%
     }
 }
 ";
 
-        public interpreter_generator(hlarm_context context) 
+        public interpreter_generator(hlarm_context context)
         {
             this.context = context;
         }
@@ -236,7 +69,6 @@ namespace debug_arm_interpreter
         {
             switch (source)
             {
-                case scope sc: return visit_scope(sc);
                 case variable_declaration vd: return visit_variable_declaration(vd);
                 case function_call fc: return visit_function_call(fc);
                 case declaration_reference dr: return visit_declaration_reference(dr);
@@ -252,9 +84,124 @@ namespace debug_arm_interpreter
                 case bit_range br: return visit_bit_range(br);
                 case return_statement rt: return visit_return_statement(rt);
                 case bits_type bt: return visit_type(bt);
-                case get_size gs: return visit_get_size(gs);    
+                case get_size gs: return visit_get_size(gs);
+                case assert_statement ass: return visit_assert_statement(ass);
+                case basic_type bt: return visit_type(bt);
+                case parentheses pt: return visit_parenthesis(pt);
+                case unary_operation uo: return visit_unary_operation(uo);
+                case while_loop wl: return visit_while_loop(wl);
+                case in_collection ic: return visit_in_collection(ic);
+                case for_loop fl: return visit_for_loop(fl);
+                case scope sc: return visit_scope(sc);
+                case case_statement cs: return visit_case_statement(cs);
+                case constant_real cr: return visit_constant_real(cr);
                 default: throw new Exception();
             }
+        }
+
+        string visit_case_statement(case_statement source)
+        {
+            string source_test = visit(source.test);
+
+            string final = "";
+
+            foreach (var ws in source.statements)
+            {
+                string this_test = "";
+
+                foreach (expression e in ws.passes)
+                {
+                    this_test += to_bool($"{visit(e)} == {source_test}");
+
+                    if (e != ws.passes.Last())
+                    {
+                        this_test += "||";
+                    }
+                }
+
+                if (ws != source.statements.First())
+                {
+                    final += "else ";
+                }
+
+                final += $"if ({this_test})\n{visit(ws.code)}\n";
+            }
+
+            return final;
+        }
+
+        string visit_constant_real(constant_real source)
+        {
+            return $"new {default_type}((double){source.value})";
+        }
+
+        string visit_in_collection(in_collection source)
+        {
+            string working_result = $"{default_type}.test_in({visit(source.test)}";
+
+            foreach (var v in source.values)
+            {
+                working_result += "," + visit(v);
+            }
+
+            working_result += ")";
+
+            return working_result;
+        }
+
+        string to_bool(string source)
+        {
+            return $"({source}).value != 0";
+        }
+
+        string visit_while_loop(while_loop source)
+        {
+            string working_result = $"while ({visit(source.condition)}.value != 0)\n";
+
+            working_result += visit(source.code);
+
+            return working_result;
+        }
+
+        string visit_for_loop(for_loop source)
+        {
+            string condition = to_bool( $"({visit(source.start_reference)} != {visit(source.end)})");
+
+            string working_result = $"for ({visit(source.start)}; {condition}; {visit(source.start_reference)} {(source.goes_up ? ("++") : ("--"))})\n";
+
+            working_result += visit_scope(source);
+
+            return working_result;
+        }
+
+        string visit_assert_statement(assert_statement source)
+        {
+            return $"Debug.Assert({visit(source.value)}.value == 1)";
+        }
+
+        string visit_unary_operation(unary_operation op)
+        {
+            string operation = op.operation;
+
+            switch (operation)
+            {
+                case "!":
+                    {
+                        return $"{default_type}.flip({visit(op.value)})";
+                    }
+
+                case "NOT":
+                    {
+                        operation = "~";
+                    }; break;
+            }
+
+            return $"{operation}({visit(op.value)})";
+        }
+
+        string visit_parenthesis(parentheses source)
+        {
+            return $"({visit(source.value)})";
         }
 
         string visit_return_statement(return_statement source)
@@ -269,7 +216,7 @@ namespace debug_arm_interpreter
 
         string visit_get_size(get_size source)
         {
-            string result = "arm_integer.get_size(";
+            string result = $"{default_type}.get_size(";
 
             foreach (var size in source.values)
             {
@@ -291,6 +238,7 @@ namespace debug_arm_interpreter
             switch (dr.reference)
             {
                 case variable_declaration vd: return vd.name;
+                case constant c: return visit(c);
                 default: throw new Exception();
             }
         }
@@ -353,10 +301,10 @@ namespace debug_arm_interpreter
                     }
                 }
 
-                return $"arm_integer.set_bits(ref {visit(bfs.base_expression)}, [{fields}], {visit(lvs.r_value)})";
+                return $"{default_type}.set_bits(ref {visit(bfs.base_expression)}, [{fields}], {visit(lvs.r_value)})";
             }
 
-            return $"{visit(lvs.l_value)} = {visit(lvs.r_value)}";  
+            return $"{visit(lvs.l_value)} = {visit(lvs.r_value)}";
         }
 
         string visit_empty_expression()
@@ -407,9 +355,14 @@ namespace debug_arm_interpreter
 
             switch (operation)
             {
-                case ":": return $"arm_integer.concat({first}, {second})";
-                case "&&": return $"arm_integer.test_and({first}, {second})";
-                case "||": return $"arm_integer.test_or({first}, {second})";
+                case ":": return $"{default_type}.concat({first}, {second})";
+                case "&&": return $"{default_type}.test_and({first}, {second})";
+                case "||": return $"{default_type}.test_or({first}, {second})";
+                case "^": return $"{default_type}.pow({first}, {second})";
+                case "EOR": operation = "^"; break;
+                case "DIV": operation = "/"; break;
+                case "AND": operation = "&"; break;
+                case "OR": operation = "|"; break;
             }
 
             return $"({first} {operation} {second})";
@@ -419,14 +372,23 @@ namespace debug_arm_interpreter
         {
             string result = function_call_context.function_reference.name + "(";
 
+            int arg_index = 0;
+
             foreach (var argument in function_call_context.arguments)
             {
+                if (function_call_context.function_reference.parameters[arg_index].is_referable)
+                {
+                    result += "ref ";
+                }
+
                 result += visit(argument);
 
                 if (argument != function_call_context.arguments.Last())
                 {
                     result += ",";
                 }
+
+                arg_index++;
             }
 
             result += ")";
@@ -479,13 +441,21 @@ namespace debug_arm_interpreter
                         result += ")";
 
                         return result;
-                    }; break;
+                    }
+                    ;
+
+                case basic_type bt:
+                    {
+                        if (bt.name == "void")
+                            return "void";
+                    }
+                    ; break;
             }
 
             return default_type;
         }
 
-        string default_type => "arm_integer";
+        string default_type => "arm_number";
 
         string visit_variable_declaration(variable_declaration source)
         {
@@ -494,9 +464,23 @@ namespace debug_arm_interpreter
 
             string working_result = $"{type} {name}";
 
+            if (source.is_referable)
+            {
+                if (!source.is_function_parameter)
+                {
+                    throw new Exception();
+                }
+
+                working_result = $"ref {working_result}";
+            }
+
             if (source.default_value != null)
             {
                 working_result += $" = {visit(source.default_value)}";
+            }
+            else if (!source.is_function_parameter && !source.undefined_global)
+            {
+                working_result += $" = new {default_type}()";
             }
 
             if (source.undefined_global)
@@ -509,7 +493,7 @@ namespace debug_arm_interpreter
 
         string generate_instruction(instruction_declaration source)
         {
-            string result = $"void instruction_{source.instruction_encoding:x}_{source.instruction_mask:x}(";
+            string result = $"void {instruction_name(source)}(";
 
             foreach (instruction_operand operand in source.operands)
             {
@@ -555,11 +539,70 @@ namespace debug_arm_interpreter
             return result + $"\n{visit(source)}";
         }
 
+        string instruction_name(instruction_declaration declaration)
+        {
+            return $"instruction_{declaration.instruction_encoding:x}_{declaration.instruction_mask:x}";    
+        }
+
+        string generate_decoding()
+        {
+            string working_result = @"List<decoding_table> decoding_tables;
+
+public interpreter()
+{
+    decoding_tables = [
+";
+
+            foreach (var instruction in context.asl.instructions)
+            {
+                string test_result = $"new decoding_table({instruction.instruction_encoding}, {instruction.instruction_mask}, execute_{instruction_name(instruction)})";
+
+                if (instruction != context.asl.instructions.Last())
+                {
+                    test_result += ",";
+                }
+
+                test_result = string_tools.tab_string(test_result, 2);
+
+                working_result += test_result;
+            }
+
+            working_result += "\t];\n";
+
+            working_result += "}\n";
+
+            foreach (var instruction in context.asl.instructions)
+            {
+                working_result += $"static void execute_{instruction_name(instruction)}(interpreter interpreter_context, int instruction)\n{{\n";
+
+                foreach (var instruction_operand in instruction.operands)
+                {
+                    working_result += $"\t{default_type} {instruction_operand.operand_name} = new {default_type}((instruction >> {instruction_operand.operand_offset}) & {(1 << instruction_operand.operand_length) - 1}, {instruction_operand.operand_length});\n";
+                }
+
+                working_result += $"\tinterpreter_context.{instruction_name(instruction)}(";
+
+                foreach (var instruction_operand in instruction.operands)
+                {
+                    working_result += instruction_operand.operand_name;
+
+                    if (instruction_operand != instruction.operands.Last())
+                    {
+                        working_result += ",";
+                    }
+                }
+
+                working_result += ");\n}\n";
+            }
+
+            return working_result;
+        }
+
         public string generate_interpreter()
         {
             string working_result = base_string;
 
-            StringBuilder implementation = new StringBuilder(); 
+            StringBuilder implementation = new StringBuilder();
 
             foreach (var variable in context.asl.global_variables)
             {
@@ -575,10 +618,11 @@ namespace debug_arm_interpreter
 
             foreach (var instruction in context.asl.instructions)
             {
-                implementation.Append(generate_instruction(instruction));   
+                implementation.Append(generate_instruction(instruction));
                 implementation.Append("\n");
             }
 
+            working_result = working_result.Replace("%DECODING%", string_tools.tab_string(generate_decoding(), 2));
             working_result = working_result.Replace("%IMPLEMENTATION%", string_tools.tab_string(implementation.ToString(), 2));
 
             return working_result;

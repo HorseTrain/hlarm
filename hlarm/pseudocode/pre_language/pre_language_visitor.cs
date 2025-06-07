@@ -30,8 +30,10 @@ namespace hlarm.pseudocode.pre_language
 
                     throw new Exception();
                 }
-
-                result.Add(to_add);
+                else
+                {
+                    result.Add(to_add);
+                }
             }
 
             result = scoping_tools.group_pre_language_objects(result);
@@ -84,6 +86,67 @@ namespace hlarm.pseudocode.pre_language
             return Visit(context.commaSeperatedExpressions());
         }
 
+        public override pre_language_object VisitCaseStatement([NotNull] CaseStatementContext context)
+        {
+            List<object> data = new List<object>();
+
+            data.Add(Visit(context.expression()));
+
+            return new pre_language_object(context, data, pre_language_type.case_statement);
+        }
+
+        public override pre_language_object VisitWhenStatement([NotNull] WhenStatementContext context)
+        {
+            List<object> data = new List<object>();
+            List<object> expressions = new List<object>();
+
+            foreach (var e in context.expression())
+            {
+                expressions.Add(Visit(e));
+            }
+
+            data.Add(expressions);
+
+            return new pre_language_object(context, data, pre_language_type.when_statement);
+        }
+
+        public override pre_language_object VisitSetExplicitFunctionDeclaration([NotNull] SetExplicitFunctionDeclarationContext context)
+        {
+            List<object> result = new List<object>();
+
+            result.Add(new pre_language_object(context, "void", pre_language_type.concrete_type));
+
+            pre_language_object function_arguments = Visit(context.functionScriptOperations().functionScriptingSecond(0).functionArguments());
+            pre_language_object variable_declaration = Visit(context.variableDeclaration());
+
+            ((List<pre_language_object>)function_arguments.data).Add(variable_declaration);
+
+            result.Add(Visit(context.functionScriptOperations().baseExpression()));
+            result.Add(function_arguments);
+
+            return new pre_language_object(context, result, pre_language_type.function_declaration);
+        }
+
+        public override pre_language_object VisitWhileStatement([NotNull] WhileStatementContext context)
+        {
+            pre_language_object condition = Visit(context.expression());
+
+            return new pre_language_object(context, new List<object>([condition]), pre_language_type.while_loop);
+        }
+
+        public override pre_language_object VisitForLoop([NotNull] ForLoopContext context)
+        {
+            string type = context.GetChild(2).GetText();
+
+            List<object> data = new List<object>();
+
+            data.Add(Visit(context.lValueSet()));
+            data.Add(Visit(context.expression()));
+            data.Add(type);
+
+            return new pre_language_object(context, data, pre_language_type.for_loop);
+        }
+
         public override pre_language_object VisitLinedExpression([NotNull] LinedExpressionContext context)
         {
             pre_language_object result = Visit(context.expression());
@@ -118,16 +181,16 @@ namespace hlarm.pseudocode.pre_language
             return new pre_language_object(context, data, pre_language_type.if_statment);
         }
 
-        public override pre_language_object VisitElseStatement([NotNull] ElseStatementContext context)
-        {
-            return new pre_language_object(context, new List<object>(), pre_language_type.else_statement);
-        }
-
         public override pre_language_object VisitElseIfStatement([NotNull] ElseIfStatementContext context)
         {
             List<object> data = new List<object>([Visit(context.expression())]);
 
             return new pre_language_object(context, data, pre_language_type.else_if_statement);
+        }
+
+        public override pre_language_object VisitElseStatement([NotNull] ElseStatementContext context)
+        {
+            return new pre_language_object(context, new List<object>(), pre_language_type.else_statement);
         }
 
         public override pre_language_object VisitInstructionDeclaration([NotNull] InstructionDeclarationContext context)
@@ -154,6 +217,25 @@ namespace hlarm.pseudocode.pre_language
             }
 
             return new pre_language_object(context, instruction_data, pre_language_type.instruction_declaration);
+        }
+
+        public override pre_language_object VisitEnumerationDeclaration([NotNull] EnumerationDeclarationContext context)
+        {
+            List<string> names = new List<string>();
+
+            for (int i = 1; i < context.identifier().Length; ++i)
+            {
+                names.Add(context.identifier(i).GetText());
+            }
+
+            return new pre_language_object(context, names, pre_language_type.enumeration_declaration);
+        }
+
+        public override pre_language_object VisitAssertStatement([NotNull] AssertStatementContext context)
+        {
+            pre_language_object condition = Visit(context.expression());
+
+            return new pre_language_object(context, condition, pre_language_type.assert_statement);
         }
 
         public override pre_language_object VisitVariableDeclaration([NotNull] VariableDeclarationContext context)
@@ -217,7 +299,7 @@ namespace hlarm.pseudocode.pre_language
             {
                 constant_string = constant_string.Replace("_", "").Replace("0x", "");
 
-                BigInteger result = string_tools.big_integer_from_hex_string(constant_string);  
+                BigInteger result = string_tools.big_integer_from_hex_string(constant_string);
 
                 return new pre_language_object(context, result, pre_language_type.constant);
             }
@@ -228,6 +310,12 @@ namespace hlarm.pseudocode.pre_language
                 BigInteger result = string_tools.big_integer_from_binary_string(constant_string);
 
                 return new pre_language_object(context, result, pre_language_type.constant);
+            }
+            else if (constant_string.Contains("."))
+            {
+                double result = double.Parse(constant_string);
+
+                return new pre_language_object(context, result, pre_language_type.real_constant);
             }
             else
             {
@@ -247,7 +335,7 @@ namespace hlarm.pseudocode.pre_language
             }
             else
             {
-                return new pre_language_object(context, BigInteger.Parse(constant_string), pre_language_type.constant);
+                return new pre_language_object(context, new BigInteger(1), pre_language_type.constant);
             }
         }
 
@@ -421,61 +509,93 @@ namespace hlarm.pseudocode.pre_language
             return new pre_language_object(context, data, pre_language_type.bit_field);
         }
 
-        public override pre_language_object VisitFunctionScriptOperations([NotNull] FunctionScriptOperationsContext context)
+        public override pre_language_object VisitFunctionScriptOperations([NotNull] FunctionScriptOperationsContext source_context)
         {
-            if (context.ChildCount == 1)
+            if (source_context.ChildCount == 1)
             {
-                return Visit(context.GetChild(0));
+                return Visit(source_context.GetChild(0));
             }
 
-            switch (context.functionScriptingSecond(0).children.Last())
+            pre_language_object working_object = Visit(source_context.baseExpression());    
+
+            foreach (var i in source_context.functionScriptingSecond())
             {
-                case FunctionArgumentsContext fac:
-                    {
-                        debug_tools.assert(context.functionScriptingSecond().Count() == 1);
-
-                        List<object> data = new List<object>();
-
-                        pre_language_object arguments;
-
-                        if (fac.commaSeperatedExpressions() != null)
+                switch (i.GetChild(0))
+                {
+                    case FunctionArgumentsContext fac:
                         {
-                            arguments = Visit(fac.commaSeperatedExpressions());
-                        }
-                        else
-                        {
-                            arguments = create_default_arguments(fac);
-                        }
-
-                        data.Add(Visit(context.GetChild(0)));
-                        data.Add(arguments);
-
-                        return new pre_language_object(context, data, pre_language_type.function_call);
-                    }
-
-                case PartAccessorContext pac:
-                    {
-                        if (pac.GetChild(0) is BitAccessorContext bac)
-                        {
-                            debug_tools.assert(context.functionScriptingSecond().Count() == 1);
-
                             List<object> data = new List<object>();
 
-                            data.Add(Visit(context.GetChild(0)));
+                            pre_language_object arguments;
 
-                            foreach (BitFeildContext b in bac.bitFeild())
+                            if (fac.commaSeperatedExpressions() != null)
                             {
-                                data.Add(Visit(b));
+                                arguments = Visit(fac.commaSeperatedExpressions());
+                            }
+                            else
+                            {
+                                arguments = create_default_arguments(fac);
                             }
 
-                            return new pre_language_object(context, data, pre_language_type.bit_field_accessed_value);
+                            data.Add(working_object);
+                            data.Add(arguments);
+
+                            working_object = new pre_language_object(i, data, pre_language_type.function_call);
                         }
-                    }
+                        ; break;
+
+                    case PartAccessorContext pac:
+                        {
+                            if (pac.GetChild(0) is BitAccessorContext bac)
+                            {
+                                List<object> data = new List<object>();
+
+                                data.Add(working_object);
+
+                                foreach (BitFeildContext b in bac.bitFeild())
+                                {
+                                    data.Add(Visit(b));
+                                }
+
+                                working_object = new pre_language_object(i, data, pre_language_type.bit_field_accessed_value);
+                            }
+                            else
+                            {
+                                throw new Exception();
+                            }
+                        }
                     ; break;
 
+                    case InCollectionContext ic:
+                        {
+                            List<object> data = new List<object>();
+
+                            pre_language_object collection = Visit(ic.collection());
+
+                            data.Add(working_object);
+                            data.Add(collection);
+
+                            working_object = new pre_language_object(i, data, pre_language_type.in_collection);
+                        }
+                        ; break;
+
+                    default: throw new Exception();
+                }
             }
 
-            throw new Exception();
+            return working_object;
+        }
+
+        public override pre_language_object VisitBracketCollection([NotNull] BracketCollectionContext context)
+        {
+            List<pre_language_object> result = new List<pre_language_object>();
+
+            foreach (var i in context.expression())
+            {
+                result.Add(Visit(i));   
+            }
+
+            return new pre_language_object(context, result, pre_language_type.expression_collection);
         }
 
         public override pre_language_object VisitIdentifier([NotNull] IdentifierContext context)

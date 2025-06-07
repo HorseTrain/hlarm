@@ -15,6 +15,6 @@ namespace hlarm.pseudocode.language
         public bool             is_function_parameter   { get; set; }
         public bool             undefined_global        { get; set; }
 
-        public bool             is_referenced           { get; set; } 
+        public bool             is_referable           { get; set; } 
     }
 }

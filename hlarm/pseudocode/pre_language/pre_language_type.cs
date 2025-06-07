@@ -18,13 +18,13 @@ namespace hlarm.pseudocode.pre_language
         function_arguments,
         identifier,
         identifier_collection,
+        expression_collection,
         comma_seperated_expression,
         source_file,
         ternary,
         binary_encoding_pattern,
         if_statment,
         else_statement,
-        else_if_statement,
         l_value_set,
         return_statement,
         tuple,
@@ -34,10 +34,19 @@ namespace hlarm.pseudocode.pre_language
         bit_field_accessed_value,
         parentheses,
         concrete_type,
+        while_loop,
+        for_loop,
         dynamic_type,
         tuple_type,
         scope,
-        constant
+        constant,
+        real_constant,
+        enumeration_declaration,
+        assert_statement,
+        in_collection,
+        case_statement,
+        when_statement,
+        else_if_statement
     }
 }
 

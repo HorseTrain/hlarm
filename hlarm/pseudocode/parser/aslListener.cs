@@ -511,6 +511,26 @@ public interface IaslListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.functionSubscriptStructAccessor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFunctionSubscriptStructAccessor([NotNull] aslParser.FunctionSubscriptStructAccessorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.functionSubscriptStructAccessor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFunctionSubscriptStructAccessor([NotNull] aslParser.FunctionSubscriptStructAccessorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.inCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterInCollection([NotNull] aslParser.InCollectionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.inCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitInCollection([NotNull] aslParser.InCollectionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -710,6 +730,16 @@ public interface IaslListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTuple([NotNull] aslParser.TupleContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.bracketCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBracketCollection([NotNull] aslParser.BracketCollectionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.bracketCollection"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBracketCollection([NotNull] aslParser.BracketCollectionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.collection"/>.
 	/// </summary>

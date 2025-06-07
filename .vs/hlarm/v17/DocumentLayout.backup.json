@@ -3,40 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Raymond\\source\\repos\\hlarm\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_number.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|solutionrelative:debug_arm_interpreter\\arm_number.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\interpreter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|solutionrelative:debug_arm_interpreter\\interpreter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_operand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\instruction_operand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|solutionrelative:debug_arm_interpreter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\function_declaration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\function_declaration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\source_file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\source_file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\scope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\scope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_bit_field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC8AC36E-992D-44E4-A95E-204AFCB57D77}|debug_arm_interpreter\\debug_arm_interpreter.csproj|solutionrelative:debug_arm_interpreter\\arm_bit_field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\generators\\cs\\interpreter_generator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\generators\\cs\\interpreter_generator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\get_size.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\get_size.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\expression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\expression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|c:\\users\\raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_encoding_helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8206A8F1-1CAF-4F2E-897E-3EF559918E17}|hlarm\\hlarm.csproj|solutionrelative:hlarm\\pseudocode\\language\\instruction_encoding_helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,58 +30,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "expression.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\expression.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\expression.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\expression.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\expression.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "program.cs",
+              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\program.cs",
+              "RelativeDocumentMoniker": "debug_arm_interpreter\\program.cs",
+              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\program.cs",
+              "RelativeToolTip": "debug_arm_interpreter\\program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T07:23:07.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "get_size.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\get_size.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\get_size.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\get_size.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\get_size.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T07:17:02.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "source_file.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\source_file.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\source_file.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\source_file.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\source_file.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowDYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T06:26:20.696Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "scope.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\scope.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\scope.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\scope.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\scope.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCUAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T06:46:10.604Z",
+              "WhenOpened": "2025-06-07T02:30:37.566Z",
               "EditorCaption": ""
             }
           ]
@@ -114,97 +59,63 @@
         "Y": 257,
         "Width": 1329,
         "Height": 681,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "interpreter_generator.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\generators\\cs\\interpreter_generator.cs",
-              "RelativeDocumentMoniker": "hlarm\\generators\\cs\\interpreter_generator.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\generators\\cs\\interpreter_generator.cs",
-              "RelativeToolTip": "hlarm\\generators\\cs\\interpreter_generator.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAEwLQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T07:24:35.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "function_declaration.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\function_declaration.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\function_declaration.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\function_declaration.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\function_declaration.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAawFMAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T06:42:53.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "interpreter.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\interpreter.cs",
-              "RelativeDocumentMoniker": "debug_arm_interpreter\\interpreter.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\interpreter.cs",
-              "RelativeToolTip": "debug_arm_interpreter\\interpreter.cs",
-              "ViewState": "AgIAAAQBAAAAAAAAAAAAAAoBAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T07:00:54.096Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "de9b533f-e93c-4a72-80cb-69dc49cf3002",
-        "Display": 2,
-        "X": 726,
-        "Y": -49,
-        "Width": 1329,
-        "Height": 681,
         "WindowState": 2
       },
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "instruction_operand.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_operand.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\instruction_operand.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_operand.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\instruction_operand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "arm_bit_field.cs",
+              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_bit_field.cs",
+              "RelativeDocumentMoniker": "debug_arm_interpreter\\arm_bit_field.cs",
+              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_bit_field.cs",
+              "RelativeToolTip": "debug_arm_interpreter\\arm_bit_field.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T07:50:51.334Z",
+              "WhenOpened": "2025-06-07T01:30:15.887Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "instruction_encoding_helper.cs",
-              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_encoding_helper.cs",
-              "RelativeDocumentMoniker": "hlarm\\pseudocode\\language\\instruction_encoding_helper.cs",
-              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\pseudocode\\language\\instruction_encoding_helper.cs",
-              "RelativeToolTip": "hlarm\\pseudocode\\language\\instruction_encoding_helper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "arm_number.cs",
+              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_number.cs",
+              "RelativeDocumentMoniker": "debug_arm_interpreter\\arm_number.cs",
+              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\arm_number.cs*",
+              "RelativeToolTip": "debug_arm_interpreter\\arm_number.cs*",
+              "ViewState": "AgIAADQAAAAAAAAAAAAnwE0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T07:52:35.735Z",
+              "WhenOpened": "2025-06-06T22:00:09.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "interpreter_generator.cs",
+              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\generators\\cs\\interpreter_generator.cs",
+              "RelativeDocumentMoniker": "hlarm\\generators\\cs\\interpreter_generator.cs",
+              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\hlarm\\generators\\cs\\interpreter_generator.cs",
+              "RelativeToolTip": "hlarm\\generators\\cs\\interpreter_generator.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAawDkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T22:18:51.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "interpreter.cs",
+              "DocumentMoniker": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\interpreter.cs",
+              "RelativeDocumentMoniker": "debug_arm_interpreter\\interpreter.cs",
+              "ToolTip": "C:\\Users\\Raymond\\source\\repos\\hlarm\\debug_arm_interpreter\\interpreter.cs",
+              "RelativeToolTip": "debug_arm_interpreter\\interpreter.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAvwPYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T22:19:00.455Z",
               "EditorCaption": ""
             }
           ]

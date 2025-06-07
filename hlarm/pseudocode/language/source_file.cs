@@ -30,6 +30,7 @@ namespace hlarm.pseudocode.language
             create_basic_type("integer");
             create_basic_type("bit");
             create_basic_type("real");
+            create_basic_type("void");
         }
 
         public source_file(pre_language_object source) : base (null)
@@ -99,6 +100,21 @@ namespace hlarm.pseudocode.language
                         functions.Add(function);
                     }
                     ; break;
+
+                case pre_language_type.enumeration_declaration:
+                    {
+                        List<string> names = (List<string>)source.data;
+
+                        int i = 0;
+
+                        foreach (string name in names)
+                        {
+                            insert_scoped_object(name, new constant(i));
+
+                            ++i;
+                        }
+
+                    }; break;
                 default: throw new Exception();
             }
         }

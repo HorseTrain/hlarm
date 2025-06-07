@@ -241,11 +241,19 @@ functionScriptOperations
     : baseExpression functionScriptingSecond*
     ;
 
+functionSubscriptStructAccessor
+    : '.' functionScriptOperations
+    ;
+
+inCollection
+    : 'IN' collection
+    ;
+
 functionScriptingSecond
     : functionArguments
     | partAccessor
-    | '.' functionScriptOperations
-    | 'IN' collection
+    | inCollection
+    | functionSubscriptStructAccessor
     ;
 
 unaryOperations
@@ -327,8 +335,12 @@ tuple
     : '(' tupleSingle (',' tupleSingle)+ ')'
     ;
 
+bracketCollection
+    :'{' expression (',' expression)* '}'
+    ;
+
 collection
-    : '{' expression (',' expression)* '}'
+    : bracketCollection
     | numberRange
     ;
 
@@ -362,6 +374,7 @@ concreteTypes
     | 'integer'
     | 'bit'
     | 'real'
+    | 'void'
     | identifier
     ;
 

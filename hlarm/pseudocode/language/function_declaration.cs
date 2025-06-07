@@ -49,14 +49,17 @@ namespace hlarm.pseudocode.language
                     {
                         string new_name = name_from_collection(size);
 
-                        if (!new_names.ContainsKey(new_name))
+                        if (get_scoped_object(new_name) == null)
                         {
-                            new_names.Add(new_name, new List<expression>());
+                            if (!new_names.ContainsKey(new_name))
+                            {
+                                new_names.Add(new_name, new List<expression>());
 
-                            create_variable_declaration(new_name, new dynamic_type(), null);
+                                create_variable_declaration(new_name, new dynamic_type(), null);
+                            }
+
+                            expressions_to_add_to = new_names[new_name];
                         }
-
-                        expressions_to_add_to = new_names[new_name];
                     }
                 }
 

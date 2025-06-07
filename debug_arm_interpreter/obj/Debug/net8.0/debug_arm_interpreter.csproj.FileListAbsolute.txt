@@ -1,0 +1,15 @@
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\bin\Debug\net8.0\debug_arm_interpreter.exe
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\bin\Debug\net8.0\debug_arm_interpreter.deps.json
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\bin\Debug\net8.0\debug_arm_interpreter.runtimeconfig.json
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\bin\Debug\net8.0\debug_arm_interpreter.dll
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\bin\Debug\net8.0\debug_arm_interpreter.pdb
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.AssemblyInfoInputs.cache
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.AssemblyInfo.cs
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.csproj.CoreCompileInputs.cache
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.sourcelink.json
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.dll
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\refint\debug_arm_interpreter.dll
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.pdb
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\debug_arm_interpreter.genruntimeconfig.cache
+C:\Users\Raymond\source\repos\hlarm\debug_arm_interpreter\obj\Debug\net8.0\ref\debug_arm_interpreter.dll

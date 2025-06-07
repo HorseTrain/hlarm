@@ -612,6 +612,30 @@ public partial class aslBaseListener : IaslListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunctionScriptOperations([NotNull] aslParser.FunctionScriptOperationsContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.functionSubscriptStructAccessor"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFunctionSubscriptStructAccessor([NotNull] aslParser.FunctionSubscriptStructAccessorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.functionSubscriptStructAccessor"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFunctionSubscriptStructAccessor([NotNull] aslParser.FunctionSubscriptStructAccessorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.inCollection"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInCollection([NotNull] aslParser.InCollectionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.inCollection"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInCollection([NotNull] aslParser.InCollectionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.functionScriptingSecond"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -851,6 +875,18 @@ public partial class aslBaseListener : IaslListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTuple([NotNull] aslParser.TupleContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="aslParser.bracketCollection"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBracketCollection([NotNull] aslParser.BracketCollectionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="aslParser.bracketCollection"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBracketCollection([NotNull] aslParser.BracketCollectionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="aslParser.collection"/>.
 	/// <para>The default implementation does nothing.</para>

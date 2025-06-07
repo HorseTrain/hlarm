@@ -3,7 +3,8 @@ A parser for ARM XML and Specification Data
 
 GOALS 🛠️
   - Arm Specification Language Parser and Executer [ ] 👈 Main Goal
-  - Instruction Decoder                            [ ]
+    - Got instructions executing in a debug interpreter!
+  - Instruction Decoder                            [X]
   - Emulation Development Tools                    [ ] 👈 Big Goal
 
 Possibilities  

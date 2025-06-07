@@ -90,7 +90,31 @@ namespace hlarm.pseudocode.pre_language
             return result;
         }
 
-        static List<pre_language_object> group_if_else_if_statements(List<pre_language_object> source)
+        static bool is_conditional_parent(pre_language_type type)
+        {
+            switch (type)
+            {
+                case pre_language_type.if_statment:
+                case pre_language_type.else_if_statement:
+                    return true;
+            }
+
+            return false;
+        }
+
+        static bool is_conditional_child(pre_language_type type)
+        {
+            switch (type)
+            {
+                case pre_language_type.else_if_statement:
+                case pre_language_type.else_statement:
+                    return true;
+            }
+
+            return false;
+        }
+
+        static List<pre_language_object> group_if_statements(List<pre_language_object> source)
         {
             while (true)
             {
@@ -108,13 +132,7 @@ namespace hlarm.pseudocode.pre_language
 
                     pre_language_object next_working_language_object = source[i + 1];
 
-                    if (!(working_language_object.type == pre_language_type.if_statment &&
-                        (
-                            next_working_language_object.type == pre_language_type.else_if_statement ||
-                            next_working_language_object.type == pre_language_type.else_statement
-                        ))
-
-                        )
+                    if (!(is_conditional_parent(working_language_object.type) && is_conditional_child(next_working_language_object.type)))
                     {
                         continue;
                     }
@@ -122,6 +140,8 @@ namespace hlarm.pseudocode.pre_language
                     ((List<object>)working_language_object.data).Add(next_working_language_object);
 
                     to_ignore.Add(next_working_language_object);
+
+                    break;
                 }
 
                 foreach (var s in source)
@@ -143,6 +163,25 @@ namespace hlarm.pseudocode.pre_language
             return source;
         }
 
+        static bool is_control_flow(pre_language_type type)
+        {
+            switch (type)
+            {
+                case pre_language_type.instruction_declaration:
+                case pre_language_type.if_statment:
+                case pre_language_type.else_if_statement:
+                case pre_language_type.else_statement:
+                case pre_language_type.function_declaration:
+                case pre_language_type.while_loop:
+                case pre_language_type.for_loop:
+                case pre_language_type.case_statement:
+                case pre_language_type.when_statement:
+                    return true;
+            }
+
+            return false;
+        }
+
         static List<pre_language_object> group_scoped_objects(List<pre_language_object> source, int source_tab)
         {
             List<pre_language_object> result = new List<pre_language_object>();
@@ -151,30 +190,21 @@ namespace hlarm.pseudocode.pre_language
             {
                 pre_language_object working_language_object = source[i];    
 
-                switch (working_language_object.type)
+                if (is_control_flow(working_language_object.type))
                 {
-                    case pre_language_type.instruction_declaration:
-                    case pre_language_type.if_statment:
-                    case pre_language_type.else_if_statement:
-                    case pre_language_type.else_statement:
-                    case pre_language_type.function_declaration:
-                        {
-                            List<object> to_modify = (List<object>)working_language_object.data;
+                    List<object> to_modify = (List<object>)working_language_object.data;
 
-                            to_modify.Add(source[i + 1]);
+                    to_modify.Add(source[i + 1]);
 
-                            working_language_object.data = to_modify;    
+                    working_language_object.data = to_modify;
 
-                            ++i;
-
-                            result.Add(working_language_object);
-                        }; break;
-
-                    default: result.Add(working_language_object); break;
+                    ++i;
                 }
+
+                result.Add(working_language_object);
             }
 
-            result = group_if_else_if_statements(result);   
+            result = group_if_statements(result);   
 
             return result;
         }
